@@ -1,0 +1,41 @@
+<div class="max-w-3xl mx-auto bg-white shadow-md rounded-lg p-6">
+  
+  <!-- Selección de Zona -->
+  <label class="block font-semibold text-gray-700 mb-2">Selecciona una zona:</label>
+  <select 
+    class="w-full p-3 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300"
+    (change)="actualizarSupermercados($event)">
+    <option value="">Elige una zona</option>
+    <option *ngFor="let zona of zonas" [value]="zona">
+      {{ zona }}
+    </option>
+  </select>
+
+  <!-- Selección de Categoría -->
+  <div *ngIf="categorias.length > 0" class="mt-4">
+    <label class="block font-semibold text-gray-700 mb-2">Selecciona una categoría:</label>
+    <select 
+      class="w-full p-3 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300"
+      (change)="buscarSupermercadoMasBarato($event)">
+      <option value="">Elige una categoría</option>
+      <option *ngFor="let categoria of categorias" [value]="categoria">
+        {{ categoria }}
+      </option>
+    </select>
+  </div>
+
+  <!-- Resultados -->
+  <div *ngIf="supermercadoMasBarato" class="mt-6">
+    <h2 class="text-xl font-semibold text-gray-700 mb-4">Supermercado más barato:</h2>
+    <p class="text-lg font-bold text-blue-600">{{ supermercadoMasBarato }}</p>
+
+    <h3 class="text-lg font-semibold text-gray-700 mt-4">Productos y precios:</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+      <div *ngFor="let producto of productosMasBaratos" class="bg-white shadow-md rounded-lg p-4 text-center">
+        <h3 class="font-semibold text-gray-800">{{ producto.nombre }}</h3>
+        <p class="text-green-600 font-bold">{{ producto.precio | currency:'EUR' }}</p>
+      </div>
+    </div>
+  </div>
+
+</div>

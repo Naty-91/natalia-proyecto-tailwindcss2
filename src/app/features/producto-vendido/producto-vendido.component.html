@@ -1,0 +1,34 @@
+<div class="container mx-auto p-4">
+  <h1 class="text-2xl font-bold mb-6">Productos Más Vendidos por Supermercado</h1>
+
+  <!-- Select para elegir el supermercado -->
+  <div class="mb-6">
+    <label for="supermercado" class="block text-lg font-medium text-gray-700">Selecciona un supermercado:</label>
+    <select id="supermercado" [(ngModel)]="supermercadoSeleccionado" (change)="mostrarProductos(supermercadoSeleccionado)" class="mt-2 p-2 border border-gray-300 rounded-md w-full">
+      <option value="" disabled selected>Selecciona un supermercado</option>
+      <option *ngFor="let supermercado of supermercados" [value]="supermercado.nombre">{{ supermercado.nombre }}</option>
+    </select>
+  </div>
+
+  <!-- Mostrar productos solo si hay un supermercado seleccionado -->
+  <div *ngIf="supermercadoSeleccionado" class="mt-8">
+    <h2 class="text-xl font-semibold text-gray-800">{{ supermercadoSeleccionado }}</h2>
+
+    <!-- Recorremos los productos del supermercado seleccionado -->
+    <div *ngIf="productosDelSupermercado.length > 0" class="mt-4 bg-white p-4 shadow-md rounded-lg">
+      <h3 class="text-lg font-semibold text-green-500">Productos:</h3>
+      
+      <!-- Mostrar los productos -->
+      <div *ngFor="let producto of productosDelSupermercado" class="mt-2">
+        <p class="text-md font-medium text-gray-700">
+          {{ producto.nombre }} - {{ producto.precio | currency: 'EUR' }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Si no hay productos -->
+    <div *ngIf="productosDelSupermercado.length === 0" class="mt-4 bg-gray-200 p-4 rounded-lg">
+      <p>No hay productos disponibles.</p>
+    </div>
+  </div>
+</div>
