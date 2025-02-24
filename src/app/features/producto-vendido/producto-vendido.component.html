@@ -1,19 +1,64 @@
-
-
-<div class="container mx-auto p-4 ">
+<div class="container mx-auto p-4">
   <!-- Título de la sección -->
   <h1 class="text-2xl font-bold mb-6">Productos Más Vendidos por Supermercado de hoy</h1>
 
-  <!-- Select para elegir el supermercado -->
-  <div class="mb-6">
-    <label for="supermercado" class="block text-lg font-medium text-gray-700">Selecciona un supermercado:</label>
-    <select id="supermercado" [(ngModel)]="supermercadoSeleccionado" (change)="mostrarProductos(supermercadoSeleccionado)" class="mt-2 p-2 border border-gray-300 rounded-md w-full">
-      <option value="" disabled selected>Selecciona un supermercado</option>
-      <option *ngFor="let supermercado of supermercados" [value]="supermercado.nombre">{{ supermercado.nombre }}</option>
-    </select>
-  </div>
+  <!-- Select para elegir el supermercado, modificado a dropdown -->
+  <form class="max-w-lg mx-auto">
+    <div class="flex">
+      <label for="supermercado" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Selecciona un supermercado:</label>
 
-  <!-- Mostrar productos del supermercado -->
+      <!-- Dropdown button -->
+      <button
+        type="button"
+        id="dropdown-button"
+        class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+        (click)="toggleDropdown()"
+      >
+        {{ supermercadoSeleccionado || 'Selecciona un supermercado' }}
+        <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+        </svg>
+      </button>
+
+      <!-- Dropdown menu -->
+      <div *ngIf="dropdownVisible" id="dropdown" class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
+        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
+          <li *ngFor="let supermercado of supermercados">
+            <button
+              type="button"
+              class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              (click)="mostrarProductos(supermercado.nombre); toggleDropdown()"
+            >
+              {{ supermercado.nombre }}
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Input de búsqueda (opcional) -->
+      <div class="relative w-full">
+        <input
+          type="search"
+          id="search-dropdown"
+          class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+          placeholder="Buscar productos..."
+          [(ngModel)]="searchQuery"
+          (input)="filtrarProductos()"
+          required
+        />
+        
+        <button
+          type="submit"
+          class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600"
+        >
+          <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0=" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </form>
+
   <div *ngIf="supermercadoSeleccionado" class="mt-8">
     <h2 class="text-xl font-semibold text-gray-800">{{ supermercadoSeleccionado }}</h2>
 
@@ -21,7 +66,7 @@
       <h3 class="text-lg font-semibold text-green-500">Productos:</h3>
       <div *ngFor="let producto of productosDelSupermercado" class="mt-2">
         <p class="text-md font-medium text-gray-700">
-          {{ producto.nombre }} 
+          {{ producto.nombre }}
         </p>
       </div>
     </div>
@@ -58,6 +103,7 @@
         </a>
       </div>
     </div>
+
     <div class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10">
       <div class="relative overflow-hidden rounded-xl">
         <img src="https://images.pexels.com/photos/3985062/pexels-photo-3985062.jpeg" alt="art cover" loading="lazy" width="1000" height="667" class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"/>
@@ -74,6 +120,7 @@
         </a>
       </div>
     </div>
+
     <div class="group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10">
       <div class="relative overflow-hidden rounded-xl">
         <img src="https://images.pexels.com/photos/942320/pexels-photo-942320.jpeg" alt="art cover" loading="lazy" width="1000" height="667" class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"/>

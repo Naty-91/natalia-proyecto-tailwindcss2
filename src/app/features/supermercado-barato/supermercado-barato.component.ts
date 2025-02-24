@@ -12,10 +12,10 @@ export class SupermercadoBaratoComponent {
   zonas: string[] = ["Mairena del Aljarafe", "Tomares", "Bormujos", "Camas", "San Juan de Aznalfarache"];
   supermercadosPorZona: Record<string, string[]> = {
     "Mairena del Aljarafe": ["Mercadona", "Carrefour", "Aldi", "Lidl"],
-    "Tomares": ["Lidl", "Aldi", "DIA"],
-    "Bormujos": ["DIA", "Carrefour", "Mercadona"],
-    "Camas": ["Mercadona", "DIA", "Carrefour"],
-    "San Juan de Aznalfarache": ["Mercadona", "Aldi", "Lidl"]
+    "Tomares": ["Mercadona", "Carrefour", "Aldi", "Lidl"],
+    "Bormujos": ["Mercadona", "Carrefour", "Aldi", "Lidl"],
+    "Camas": ["Mercadona", "Carrefour", "Aldi", "Lidl"],
+    "San Juan de Aznalfarache": ["Mercadona", "Carrefour", "Aldi", "Lidl"]
   };
 
   categoriasPorSupermercado: Record<string, string[]> = {

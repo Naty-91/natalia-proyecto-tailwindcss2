@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Importar FormsModule
-interface Producto {
-  nombre: string; /* declaro la variable nombre del producto */
 
+interface Producto {
+  nombre: string;
 }
 
 interface Supermercado {
-  nombre: string; /* esta variable es la del supermercado */
-  productos: Producto[];/* aqui voy guardando en un array los productos que voy agregando  */
+  nombre: string;
+  productos: Producto[];
 }
 
 @Component({
   selector: 'app-producto-vendido',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './producto-vendido.component.html',
-  styleUrl: './producto-vendido.component.scss'
+  styleUrls: ['./producto-vendido.component.scss']
 })
 export class ProductoVendidoComponent {
   supermercados: Supermercado[] = [
@@ -67,14 +67,33 @@ export class ProductoVendidoComponent {
 
   supermercadoSeleccionado: string = '';
   productosDelSupermercado: Producto[] = [];
+  productosFiltrados: Producto[] = [];
+  searchQuery: string = '';
+  dropdownVisible: boolean = false; // Variable para controlar la visibilidad del dropdown
 
   // Función para actualizar los productos del supermercado seleccionado
   mostrarProductos(supermercado: string) {
     const supermercadoSeleccionado = this.supermercados.find(s => s.nombre === supermercado);
     if (supermercadoSeleccionado) {
+      this.supermercadoSeleccionado = supermercado;
       this.productosDelSupermercado = supermercadoSeleccionado.productos;
+      this.productosFiltrados = [...this.productosDelSupermercado];
     }
   }
 
-  
+  // Función para mostrar/ocultar el dropdown
+  toggleDropdown() {
+    this.dropdownVisible = !this.dropdownVisible;
+  }
+
+  // Función para filtrar productos según la búsqueda
+  filtrarProductos() {
+    if (this.searchQuery.trim() === '') {
+      this.productosFiltrados = [...this.productosDelSupermercado];
+    } else {
+      this.productosFiltrados = this.productosDelSupermercado.filter(producto =>
+        producto.nombre.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    }
+  }
 }
