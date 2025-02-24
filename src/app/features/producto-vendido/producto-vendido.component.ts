@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule } from '@angular/forms'; // Importar FormsModule
 interface Producto {
   nombre: string;
   precio: number; // Precio en euros
@@ -13,7 +13,7 @@ interface Supermercado {
 
 @Component({
   selector: 'app-producto-vendido',
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './producto-vendido.component.html',
   styleUrl: './producto-vendido.component.scss'
 })

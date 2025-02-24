@@ -4,10 +4,12 @@ import { RegistrationComponent } from './features/registration/registration.comp
 import { SupermercadoBaratoComponent } from './features/supermercado-barato/supermercado-barato.component';
 import { ProductoVendidoComponent } from './features/producto-vendido/producto-vendido.component'; 
 
+
 export const routes: Routes = [
     {path:'login',component:LoginComponent},
     {path:'register',component:RegistrationComponent},
     {path:'buscador',component:SupermercadoBaratoComponent},
-    {path:'producto',component:ProductoVendidoComponent}
+    {path:'',component:ProductoVendidoComponent},
+  
 ];
 
