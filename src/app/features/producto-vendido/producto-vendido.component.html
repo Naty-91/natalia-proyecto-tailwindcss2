@@ -1,6 +1,8 @@
-<div class="container mx-auto p-4">
+
+
+<div class="container mx-auto p-4 ">
   <!-- Título de la sección -->
-  <h1 class="text-2xl font-bold mb-6">Productos Más Vendidos por Supermercado</h1>
+  <h1 class="text-2xl font-bold mb-6">Productos Más Vendidos por Supermercado de hoy</h1>
 
   <!-- Select para elegir el supermercado -->
   <div class="mb-6">
@@ -19,7 +21,7 @@
       <h3 class="text-lg font-semibold text-green-500">Productos:</h3>
       <div *ngFor="let producto of productosDelSupermercado" class="mt-2">
         <p class="text-md font-medium text-gray-700">
-          {{ producto.nombre }} - {{ producto.precio | currency: 'EUR' }}
+          {{ producto.nombre }} 
         </p>
       </div>
     </div>

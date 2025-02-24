@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Importar FormsModule
 interface Producto {
-  nombre: string;
-  precio: number; // Precio en euros
+  nombre: string; /* declaro la variable nombre del producto */
+
 }
 
 interface Supermercado {
-  nombre: string;
-  productos: Producto[];
+  nombre: string; /* esta variable es la del supermercado */
+  productos: Producto[];/* aqui voy guardando en un array los productos que voy agregando  */
 }
 
 @Component({
@@ -22,46 +22,45 @@ export class ProductoVendidoComponent {
     {
       nombre: 'Mercadona',
       productos: [
-        { nombre: 'Leche', precio: 1.20 },
-        { nombre: 'Pan', precio: 0.95 },
-        { nombre: 'Arroz', precio: 1.50 },
-        { nombre: 'Pollo', precio: 4.80 },
+        { nombre: 'Aceite de oliva' },
+        { nombre: 'Jamón serrano' },
+        { nombre: 'Café molido' },
+        { nombre: 'Salchichas frescas' },
       ],
     },
     {
       nombre: 'Aldi',
       productos: [
-        { nombre: 'Leche', precio: 1.10 },
-        { nombre: 'Pan', precio: 0.85 },
-        { nombre: 'Arroz', precio: 1.30 },
-        { nombre: 'Pollo', precio: 4.60 },
+        { nombre: 'Mantequilla' },
+        { nombre: 'Queso curado' },
+        { nombre: 'Cereal integral' },
+        { nombre: 'Pechuga de pavo' },
       ],
     },
     {
       nombre: 'Lidl',
       productos: [
-        { nombre: 'Leche', precio: 1.25 },
-        { nombre: 'Pan', precio: 0.90 },
-        { nombre: 'Arroz', precio: 1.40 },
-        { nombre: 'Pollo', precio: 4.70 },
+        { nombre: 'Yogur natural' },
+        { nombre: 'Tomates en conserva' },
+        { nombre: 'Pasta de trigo' },
+        { nombre: 'Filetes de merluza' },
       ],
     },
     {
       nombre: 'DIA',
       productos: [
-        { nombre: 'Leche', precio: 1.05 },
-        { nombre: 'Pan', precio: 0.80 },
-        { nombre: 'Arroz', precio: 1.20 },
-        { nombre: 'Pollo', precio: 4.50 },
+        { nombre: 'Yogur griego' },
+        { nombre: 'Aguacates' },
+        { nombre: 'Leche entera DIA' },
       ],
     },
     {
       nombre: 'Carrefour',
       productos: [
-        { nombre: 'Leche', precio: 1.30 },
-        { nombre: 'Pan', precio: 1.00 },
-        { nombre: 'Arroz', precio: 1.60 },
-        { nombre: 'Pollo', precio: 4.90 },
+        { nombre: 'Chocolate negro' },
+        { nombre: 'Galletas digestivas' },
+        { nombre: 'Legumbres variadas' },
+        { nombre: 'Pechuga de pollo' },
       ],
     },
   ];
@@ -76,4 +75,6 @@ export class ProductoVendidoComponent {
       this.productosDelSupermercado = supermercadoSeleccionado.productos;
     }
   }
+
+  
 }
